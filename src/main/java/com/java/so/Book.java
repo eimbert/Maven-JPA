@@ -5,21 +5,42 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Book implements Serializable {
 
 	@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//private long id;
 	private String title;
 	private Date date;
 	@OneToMany(mappedBy="book",cascade=CascadeType.ALL)
 	private List<Page> pages= new ArrayList<Page>();
-	@OneToMany(mappedBy="book", cascade=CascadeType.ALL)
+	
+	@JoinTable(
+	        name = "rel_books_auths",
+	        joinColumns = @JoinColumn(name = "FK_BOOK", nullable = false),
+	        inverseJoinColumns = @JoinColumn(name="FK_AUTHOR", nullable = false)
+	)
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Author> author = new ArrayList<Author>();
+	
+
+	public Book(String title, Date date) {
+		super();
+		this.title = title;
+		this.date = date;
+	}
+	
+	public Book(String title) {
+		super();
+		this.title = title;
+	}
+	
+	public Book() {
+		super();
+	}
 	
 	@Override
 	public int hashCode() {
@@ -45,22 +66,7 @@ public class Book implements Serializable {
 			return false;
 		return true;
 	}
-
-	public Book(String title, Date date) {
-		super();
-		this.title = title;
-		this.date = date;
-	}
 	
-	
-	public Book(String title) {
-		super();
-		this.title = title;
-	}
-	
-	public Book() {
-		super();
-	}
 	public Date getDate() {
 		return date;
 	}
@@ -84,7 +90,9 @@ public class Book implements Serializable {
 	public void setPages(List<Page> pages) {
 		this.pages = pages;
 	}
-
+	public void addAuthor(Author a){
+		author.add(a);
+	}
 	public List<Author> getAuthor() {
 		return author;
 	}

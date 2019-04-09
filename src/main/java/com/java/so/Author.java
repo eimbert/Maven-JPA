@@ -1,53 +1,50 @@
 package com.java.so;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Author implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	private String name;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="book_title")
-	private Book book;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//private long id;
+	private String nameAuthor;
+	private String cityResidence;
+	
+	@ManyToMany(mappedBy = "author")
+	private List<Book> books;
 	
 	public Author(){
 		super();
 	}
-	public Author(int id, String name, Book book) {
+	public Author(String name, String city) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.book = book;
+		this.nameAuthor = name;
+		this.cityResidence = city;
 	}
-	public int getId() {
-		return id;
+	public void addBook(Book b){
+		books.add(b);
 	}
-	public void setId(int id) {
-		this.id = id;
+	public String getNameAuthor() {
+		return nameAuthor;
 	}
-	public String getName() {
-		return name;
+	public void setNameAuthor(String nameAuthor) {
+		this.nameAuthor = nameAuthor;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public List<Book> getBooks() {
+		return books;
 	}
-	public Book getBook() {
-		return book;
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
-	public void setBook(Book book) {
-		this.book = book;
+	public String getCityResidence() {
+		return cityResidence;
 	}
-	
-	
+	public void setCityResidence(String cityResidence) {
+		this.cityResidence = cityResidence;
+	}
+
 }
