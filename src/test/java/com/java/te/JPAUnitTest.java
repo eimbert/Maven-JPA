@@ -16,7 +16,7 @@ public class JPAUnitTest {
 
 	@BeforeClass
 	public static void setupStatic() {
-		Persistence.generateSchema("curso", null);
+		Persistence.generateSchema("cursoMySQL", null);
 		emf = Persistence.createEntityManagerFactory("curso");
 	}
 

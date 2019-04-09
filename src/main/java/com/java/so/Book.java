@@ -15,11 +15,11 @@ public class Book implements Serializable {
 
 	@Id
 	private String title;
-	private String author;
 	private Date date;
 	@OneToMany(mappedBy="book",cascade=CascadeType.ALL)
 	private List<Page> pages= new ArrayList<Page>();
-	
+	@OneToMany(mappedBy="book", cascade=CascadeType.ALL)
+	private List<Author> author = new ArrayList<Author>();
 	
 	@Override
 	public int hashCode() {
@@ -46,10 +46,9 @@ public class Book implements Serializable {
 		return true;
 	}
 
-	public Book(String title, String author, Date date) {
+	public Book(String title, Date date) {
 		super();
 		this.title = title;
-		this.author = author;
 		this.date = date;
 	}
 	
@@ -62,29 +61,20 @@ public class Book implements Serializable {
 	public Book() {
 		super();
 	}
-	
-	public void addPage(Page p) {
-		
-		pages.add(p);
-	}
-
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
 	public Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public void addPage(Page p) {
+		pages.add(p);
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public List<Page> getPages() {
@@ -93,6 +83,14 @@ public class Book implements Serializable {
 
 	public void setPages(List<Page> pages) {
 		this.pages = pages;
+	}
+
+	public List<Author> getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(List<Author> author) {
+		this.author = author;
 	}
 	
 	

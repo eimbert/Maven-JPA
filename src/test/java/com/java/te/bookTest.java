@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.java.so.Book;
+import com.java.so.Author;
 
 
 public class bookTest extends JPAUnitTest {
@@ -40,11 +41,10 @@ public class bookTest extends JPAUnitTest {
 	
 	@Test
 	public void selectFirstBook2() {
-		
-		Book book= em.find(Book.class, "War and Peace");
-		assertEquals("Tolstoi",book.getAuthor());
+		Book book= em.find(Book.class, "Anna Karenina");
+		String name =book.getAuthor().get(0).getName();
+		assertEquals("Enrique", name);
 		//assertNull(book);
-		
 	}
 	
 	@Test
@@ -54,20 +54,17 @@ public class bookTest extends JPAUnitTest {
 		em.remove(book);
 		em.getTransaction().commit();
 		Book noBook= em.find(Book.class,"Anna Karenina");
-		assertNull(noBook);
+		//assertNull(noBook);
 		
 	}
 	
 	@Test
 	public void insertNewBook() {
-		
 		em.getTransaction().begin();
-		Book newBook= new Book("Lighthouse","VWoolf",new Date());
+		Book newBook= new Book("Lighthouse",new Date());
 		em.persist(newBook);
 		em.getTransaction().commit();
 		Book insertBook = em.find(Book.class,"Lighthouse");
             assertNotNull(insertBook);
-
-		
 	}	
 }
