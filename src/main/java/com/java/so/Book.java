@@ -18,15 +18,9 @@ public class Book implements Serializable {
 	@OneToMany(mappedBy="book",cascade=CascadeType.ALL)
 	private List<Page> pages= new ArrayList<Page>();
 	
-	@JoinTable(
-	        name = "rel_books_auths",
-	        joinColumns = @JoinColumn(name = "FK_BOOK", nullable = false),
-	        inverseJoinColumns = @JoinColumn(name="FK_AUTHOR", nullable = false)
-	)
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	private List<Author> author = new ArrayList<Author>();
 	
-
 	public Book(String title, Date date) {
 		super();
 		this.title = title;
@@ -99,9 +93,5 @@ public class Book implements Serializable {
 
 	public void setAuthor(List<Author> author) {
 		this.author = author;
-	}
-	
-	
-
-	
+	}	
 }

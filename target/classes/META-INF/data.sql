@@ -1,12 +1,4 @@
 INSERT into Book (title,date) values ('Anna Karenina','1918-02-12');
 INSERT into Book (title,date) values ('War and Peace','1948-08-03');
 INSERT into Book (title,date) values ('Java para principiantes','2019-01-01');
-INSERT into Page (text,font,book_title) values ('Happy families are all alike; every unhappy family is unhappy in its own way.','nunito','Anna Karenina');
-INSERT into Page (text,font,book_title) values ('Everything was in confusion in the Oblonskys house.','nunito','Anna Karenina');
-INSERT into Page (text,font,book_title) values ('The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him.','nunito','Anna Karenina');
-INSERT into Author (nameAuthor, cityResidence) values ('Enrique', 'Barcelona');
-INSERT into Author (nameAuthor, cityResidence) values ('Pedro', 'Madrid');
-INSERT into rel_books_auths (FK_BOOK, FK_AUTHOR) values ('java para principiantes', 'Pedro');
-INSERT into rel_books_auths (FK_BOOK, FK_AUTHOR) values ('java para principiantes', 'Enrique');
-INSERT into rel_books_auths (FK_BOOK, FK_AUTHOR) values ('War and Peace', 'Enrique');
-INSERT into rel_books_auths (FK_BOOK, FK_AUTHOR) values ('Anna Karenina', 'Enrique');
+

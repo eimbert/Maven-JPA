@@ -25,6 +25,7 @@ public class Author implements Serializable {
 		this.nameAuthor = name;
 		this.cityResidence = city;
 	}
+	
 	public void addBook(Book b){
 		books.add(b);
 	}
